@@ -21,6 +21,7 @@ dependencies:
     git:
       url: https://github.com/fluttercandies/simple_provider.git
       ref: master
+      path: core
 ```
 
 ## 简单使用
