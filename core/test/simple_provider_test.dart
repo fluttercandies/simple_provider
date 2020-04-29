@@ -63,6 +63,46 @@ void main() {
     expect(find.text('0'), findsNothing);
     expect(find.text('1'), findsOneWidget);
   });
+
+  testWidgets('Test SimpleConsumer', (tester) async {
+    await tester.pumpWidget(
+      SimpleProvider(
+        notifiers: <Listenable>[
+          NumberProvider(),
+        ],
+        child: MaterialApp(
+          home: Column(
+            children: <Widget>[
+              Builder(
+                builder: (context) => RaisedButton(
+                  child: Text('tap'),
+                  onPressed: () {
+                    final numberProvider =
+                        SimpleProvider.of<NumberProvider>(context);
+                    numberProvider.add();
+                  },
+                ),
+              ),
+              SimpleConsumer<NumberProvider>(
+                builder: (context, value) {
+                  return Text(value.counter.toString());
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
+
+    await tester.tap(find.text('tap'));
+    await tester.pump();
+
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
+  });
 }
 
 class NumberProvider extends ChangeNotifier {
