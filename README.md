@@ -45,6 +45,8 @@ import 'package:simple_provider/simple_provider.dart';
   ),
 ```
 
+其他的类使用也可以参考 [test 文件](https://github.com/flutter-fix-something/simple_provider/blob/master/core/test/simple_provider_test.dart)
+
 ## 为啥写这东西
 
 我个人觉得,特别精细的刷新粒度会增加代码复杂度,除非在极致追求性能的页面,否则并不建议使用, 且目前 dart 深比较需要复杂的代码来完成, 颇有得不偿失的感觉, 本库目前并不打算提供诸如 Selector 之类的东西来增加代码复杂度, 未来也许会改主意
