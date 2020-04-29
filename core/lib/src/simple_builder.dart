@@ -43,7 +43,7 @@ class MutilSimpleBuilder extends StatefulWidget {
 }
 
 class _MutilSimpleBuilderState extends State<MutilSimpleBuilder> {
-  Set<Listenable> _set = {};
+  final _set = Set<Listenable>();
 
   @override
   void initState() {
