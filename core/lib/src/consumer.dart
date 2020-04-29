@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:simple_provider/simple_provider.dart';
-import 'package:simple_provider/src/simple_builder.dart';
+
+import 'provider.dart';
+import 'simple_builder.dart';
 
 typedef Widget ConsumerBuilder<T extends Listenable>(
   BuildContext context,
