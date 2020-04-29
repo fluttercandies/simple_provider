@@ -29,6 +29,47 @@ void main() {
     expect(find.text('tap'), findsOneWidget);
     expect(type, NumberProvider);
   });
+
+  testWidgets('Test SimpleBuilder', (tester) async {
+    final provider = NumberProvider();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Column(
+          children: <Widget>[
+            FlatButton(
+              onPressed: () {
+                provider.add();
+              },
+              child: Text('add'),
+            ),
+            SimpleBuilder(
+              listenable: provider,
+              builder: () {
+                return Text(provider.counter.toString());
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+
+    expect(find.text('0'), findsOneWidget);
+    expect(find.text('1'), findsNothing);
+
+    await tester.tap(find.text('add'));
+    await tester.pump();
+
+    expect(find.text('0'), findsNothing);
+    expect(find.text('1'), findsOneWidget);
+  });
 }
 
-class NumberProvider extends ChangeNotifier {}
+class NumberProvider extends ChangeNotifier {
+  int counter = 0;
+
+  void add() {
+    counter++;
+    notifyListeners();
+  }
+}
