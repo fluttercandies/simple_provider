@@ -1,10 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-/// 核心类. 一般包裹MaterialApp使用来提供全局状态共享
-///
-/// ```dart
-///
-/// ````
+/// 核心类. 一般包裹[MaterialApp]或[WidgetsApp]使用来提供全局状态共享
 class SimpleProvider extends InheritedWidget {
   final List<Listenable> notifiers;
 

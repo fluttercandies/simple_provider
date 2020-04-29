@@ -1,6 +1,8 @@
 import 'package:flutter/widgets.dart';
 
-/// 核心监听类, 用于单监听一个Listenable对象
+/// 核心监听类, 用于单监听一个[Listenable]对象, 可以用于[ChangeNotifier],[ValueNotifier],甚至是[AnimationController]这种动画控制器
+///
+/// 并不返回[BuildContext], 因为大部分情况下不需要, 如果你需要[BuildContext]作为回调, 可以使用[AnimatedBuilder], 这个类是Flutter sdk提供的
 class SimpleBuilder extends StatelessWidget {
   final Listenable listenable;
   final ValueGetter<Widget> builder;
@@ -23,7 +25,7 @@ class SimpleBuilder extends StatelessWidget {
   }
 }
 
-/// 核心监听类2, 用于同时监听多个Listenable对象
+/// 核心监听类2, 用于同时监听多个[Listenable]对象, 只要有任意一个发出了通知, 则会触发builder回调, 重新构建Widget
 class MutilSimpleBuilder extends StatefulWidget {
   final List<Listenable> listenables;
   final ValueGetter<Widget> builder;
